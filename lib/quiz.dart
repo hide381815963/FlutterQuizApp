@@ -1,3 +1,5 @@
+import 'package:html/parser.dart';
+
 class Quiz {
   int responseCode;
   List<Results> results;
@@ -53,10 +55,13 @@ class Results {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['category'] = this.category;
+    data['category'] = Uri.decodeFull(this.category);
     data['type'] = this.type;
-    data['difficulty'] = this.difficulty;
-    data['question'] = this.question;
+    data['difficulty'] = 'this.difficulty';
+    data['question'] = 'aaaaaa';
+    print(this.question);
+    print(Uri.decodeFull(this.question));
+    print(parseFragment(this.question));
     data['correct_answer'] = this.correctAnswer;
     data['incorrect_answers'] = this.allAnswers;
     return data;
